@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import styles from './vehicle.module.css';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const MAKES = [
   'Acura', 'Alfa Romeo', 'Audi', 'BMW', 'Chevrolet', 'Chrysler', 'Dodge',
@@ -56,7 +57,6 @@ export default function VehiclePage() {
     } else {
       console.log({ make, model, year });
     }
-    router.push('/symptoms');
     // NEXT STEPS FOR BACKEND DSNI GUYS 
   };
 
@@ -171,9 +171,11 @@ export default function VehiclePage() {
 
 
       {(isValidVin(vin) || (make && model && year)) && (
-        <button onClick={handleSubmit} className={styles.button}>
-          Continue
-        </button>
+        <Link href="/symptoms">
+          <button onClick={handleSubmit} className={styles.button}>
+            Continue
+          </button>
+        </Link>
       )}
     {/* </div> */}
     </main>
