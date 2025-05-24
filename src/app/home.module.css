@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 4rem;
+  padding: 2rem;
+}
+
+.logoWrapper {
+  flex-shrink: 0;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  gap: 1.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.button {
+  background-color: #cfe9f8;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+}
