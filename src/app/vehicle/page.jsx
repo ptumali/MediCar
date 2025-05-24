@@ -115,7 +115,7 @@ export default function VehiclePage() {
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>Help us specify your vehicle:</h1>
-      <div className={styles.card}>
+      {/* <div className={styles.card}> */}
       <div className={styles.searchColumn}>
         <SearchSelect
           label="Make"
@@ -172,7 +172,7 @@ export default function VehiclePage() {
           Continue
         </button>
       )}
-    </div>
+    {/* </div> */}
     </main>
   );
 }
