@@ -5,7 +5,23 @@
   padding-top: 4rem;
   min-height: 100vh;
   background-color: white;
+
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* ✅ this is key */
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  max-width: 500px;
+  width: 100%;
+}
+
 
 .heading {
   font-size: 1.75rem;
@@ -93,3 +109,44 @@
   font-size: 1rem;
   cursor: pointer;
 }
+
+.orSeparator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+  width: 100%;
+  max-width: 420px;
+}
+
+.orSeparator hr {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+
+.orSeparator span {
+  font-weight: 600;
+  color: #444;
+  white-space: nowrap;
+}
+
+
+.vinWrapper {
+  width: 100%;
+  max-width: 420px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vinError {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  margin-bottom: -1rem;
+  text-align: center;
+}
+

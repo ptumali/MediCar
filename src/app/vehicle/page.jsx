@@ -43,14 +43,23 @@ export default function VehiclePage() {
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
-
-  const sendToBackend = (make, model, year) => {
-    console.log('Sending to backend:', { make, model, year });
-  };
+  const [vin, setVin] = useState('');
 
   const handleSubmit = () => {
-    sendToBackend(make, model, year);
+    console.log('continue button success!');
+
+    if (isValidVin(vin)) {
+      console.log({ vin });
+    } else {
+      console.log({ make, model, year });
+    }
+
+    // NEXT STEPS FOR BACKEND DSNI GUYS 
   };
+
+
+  const isValidVin = (vin) => /^[A-HJ-NPR-Z0-9]{17}$/i.test(vin);
+  
 
   function SearchSelect({ label, options, value, onSelect }) {
     const [input, setInput] = useState(value || '');
@@ -106,7 +115,7 @@ export default function VehiclePage() {
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>Help us specify your vehicle:</h1>
-
+      <div className={styles.card}>
       <div className={styles.searchColumn}>
         <SearchSelect
           label="Make"
@@ -137,11 +146,33 @@ export default function VehiclePage() {
         />
       </div>
 
-      {make && model && year && (
+      <div className={styles.orSeparator}>
+        <hr />
+        <span>OR</span>
+        <hr />
+      </div>
+
+      <div className={styles.vinWrapper}>
+        <label className={styles.label}>VIN</label>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Enter VIN"
+          value={vin}
+          onChange={(e) => setVin(e.target.value)}
+        />
+        {vin && !isValidVin(vin) && (
+          <p className={styles.vinError}>VIN must be 17 valid characters.</p>
+        )}
+      </div>
+
+
+      {(isValidVin(vin) || (make && model && year)) && (
         <button onClick={handleSubmit} className={styles.button}>
           Continue
         </button>
       )}
+    </div>
     </main>
   );
 }
