@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import styles from './vehicle.module.css';
+import { useRouter } from 'next/navigation';
 
 const MAKES = [
   'Acura', 'Alfa Romeo', 'Audi', 'BMW', 'Chevrolet', 'Chrysler', 'Dodge',
@@ -44,6 +45,8 @@ export default function VehiclePage() {
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
   const [vin, setVin] = useState('');
+  const router = useRouter();
+
 
   const handleSubmit = () => {
     console.log('continue button success!');
@@ -53,7 +56,7 @@ export default function VehiclePage() {
     } else {
       console.log({ make, model, year });
     }
-
+    router.push('/symptoms');
     // NEXT STEPS FOR BACKEND DSNI GUYS 
   };
 
