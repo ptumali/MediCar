@@ -60,9 +60,32 @@ export default function VehiclePage() {
   const isValidModelEntry = make && model && year;
   const isFormValid = mode === 'vin' ? isValidVin(vin) : isValidModelEntry;
 
-  const handleSubmit = () => {
-    const data = mode === 'vin' ? { vin } : { make, model, year };
-    localStorage.setItem('carInfo', JSON.stringify(data));
+  const handleSubmit = async () => {
+    console.log('continue button clicked!');
+
+    const payload = isValidVin(vin) ? { vin } : {make, model, year};
+
+    localStorage.setItem('carInfo', JSON.stringify(payload)); 
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error('Server responded with ${response.status} status');
+      }
+
+      const result = await response.json();
+      console.log("Response: ", result);
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
+
   };
 
   function SearchSelect({ label, options, value, onSelect }) {

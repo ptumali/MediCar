@@ -32,16 +32,56 @@ export default function SymptomsPage() {
     setCustomProblem('');
   };
 
-  const handleCustomSubmit = () => {
-    if (customProblem) {
-      localStorage.setItem('selectedProblem', JSON.stringify(customProblem));
-      console.log('Custom problem submitted:', customProblem);
-    } else if (selectedProblem) {
-      localStorage.setItem('selectedProblem', JSON.stringify(selectedProblem));
-      console.log('Predefined problem submitted:', selectedProblem);
+  // const handleCustomSubmit = () => {
+  //   if (customProblem) {
+  //     localStorage.setItem('selectedProblem', JSON.stringify(customProblem));
+  //     console.log('Custom problem submitted:', customProblem);
+  //   } else if (selectedProblem) {
+  //     localStorage.setItem('selectedProblem', JSON.stringify(selectedProblem));
+  //     console.log('Predefined problem submitted:', selectedProblem);
+  //   }
+  //   window.location.href = '/result';
+  // };
+
+  const handleCustomSubmit = async () => {
+  let problemToSubmit = '';
+
+  if (customProblem) {
+    problemToSubmit = customProblem;
+    localStorage.setItem('selectedProblem', JSON.stringify(customProblem));
+    console.log('Custom problem submitted:', customProblem);
+  } else if (selectedProblem) {
+    problemToSubmit = selectedProblem;
+    localStorage.setItem('selectedProblem', JSON.stringify(selectedProblem));
+    console.log('Predefined problem submitted:', selectedProblem);
+  }
+
+  if (!problemToSubmit) {
+    console.warn('No problem provided');
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://127.0.0.1:5000/api/query?problem=${encodeURIComponent(problemToSubmit)}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`Query failed with status ${response.status}`);
     }
+
+    const result = await response.json();
+    console.log('Diagnostic report:', result);
+
+    // Save the diagnostic result if needed for use in /result page
+    localStorage.setItem('diagnosticReport', JSON.stringify(result));
+
+    // Navigate to result page
     window.location.href = '/result';
-  };
+  } catch (error) {
+    console.error('Error fetching diagnostic report:', error);
+  }
+};
 
   return (
     <main className={styles.page}>
