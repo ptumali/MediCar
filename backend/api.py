@@ -1,10 +1,12 @@
 from flask import Blueprint, request, jsonify
+from retrieval_system import retrieval
 
 api = Blueprint('api', __name__)
 
 # Save user input in memory here
 submission = []
 
+# API routes for handling vehicle submissions and queries
 @api.route('/submit', methods=['POST'])
 def submit():
     data = request.get_json()
@@ -31,6 +33,7 @@ def submit():
     
     return jsonify({"error": "Invalid data"}), 400
 
+# API route for querying diagnostic reports
 @api.route('/query', methods=['GET'])
 def query():
     problem = request.args.get('problem')
@@ -39,7 +42,7 @@ def query():
         return jsonify({"error": "Problem parameter is required"}), 400 
     
     try:
-        diagnostic_report = problem.lower()
+        diagnostic_report = retrieval.ask_gemini(problem.lower())
         
         return jsonify(diagnostic_report), 200
     

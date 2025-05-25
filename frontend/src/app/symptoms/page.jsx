@@ -32,17 +32,6 @@ export default function SymptomsPage() {
     setCustomProblem('');
   };
 
-  // const handleCustomSubmit = () => {
-  //   if (customProblem) {
-  //     localStorage.setItem('selectedProblem', JSON.stringify(customProblem));
-  //     console.log('Custom problem submitted:', customProblem);
-  //   } else if (selectedProblem) {
-  //     localStorage.setItem('selectedProblem', JSON.stringify(selectedProblem));
-  //     console.log('Predefined problem submitted:', selectedProblem);
-  //   }
-  //   window.location.href = '/result';
-  // };
-
   const handleCustomSubmit = async () => {
   let problemToSubmit = '';
 
