@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,4 +30,94 @@
   font-weight: 600;
   border-radius: 999px;
   border: none;
+} */
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  font-family: 'YourBrandFont', sans-serif;
+    background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #ffffff 40%,
+    #c5e0ff 100%
+  );
+}
+
+.centeredContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;    
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+
+.brand {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #b3d4f0;
+  margin-bottom: 1.5rem;
+}
+
+.car {
+  color: #b3d4f0;
+  display: inline-block;
+  position: relative;
+  padding-left: 0.25rem;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #111;
+  line-height: 1.6;
+}
+
+.button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background-color: #c5e0ff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.button:hover {
+  background-color: #c5e0ff;
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
