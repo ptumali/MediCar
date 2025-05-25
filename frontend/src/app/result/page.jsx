@@ -1,13 +1,11 @@
 'use client';
+import Image from 'next/image';
 import styles from './results.module.css';
 import { useSearchParams } from 'next/navigation';
 
 export default function ResultsPage() {
-  // In a real app, you'd probably pass this through state or query params
   const car = { year: '2023', make: 'Mazda', model: '5' };
   const symptom = 'Engine has ticking sounds';
-
-  // Dummy results
   const contact = '+1 111 111 1111';
   const urgency = 'Low';
   const problems = ['Loose timing chain', 'Oil pressure issue', 'Valve train wear'];
@@ -16,6 +14,14 @@ export default function ResultsPage() {
     <main className={styles.page}>
       <div className={styles.card}>
         <h2 className={styles.heading}>Car Type: {car.year} {car.make} {car.model}</h2>
+
+        <Image
+          src="/medicar-healed.png"
+          alt="MediCar healed mascot"
+          width={240}
+          height={240}
+          className={styles.imageBox}
+        />
 
         <div className={styles.symptomSearch}>
           <input
