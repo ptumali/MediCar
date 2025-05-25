@@ -6,6 +6,18 @@ import os
 
 import faiss
 
+# from openai import OpenAI
+import google.generativeai as genai
+
+from dotenv import load_dotenv
+
+# Load the .env file
+load_dotenv()
+
+# Access environment variables
+gemini_key = os.getenv("NEXT_PUBLIC_GEMINI_API_KEY")
+
+
 def read(dirs):
     docs = []
     docs_path = []
@@ -77,6 +89,11 @@ def query(query):
 
     return texts
 
+query_input = "What are the symptoms of a bad alternator?"
+context = query(query_input)
 
-
+genai.configure(api_key=gemini_key)
+model = genai.GenerativeModel('gemini-2.5-flash-preview-05-20')
+response = model.generate_content(f"Summarisze this for me: {' '.join(context)}")
+print(response.text)
 
