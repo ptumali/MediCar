@@ -1,7 +1,7 @@
 
 from flask import Flask
 from flask_cors import CORS # Allows cross-origin requests
-from api import api
+from backend.api import api
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes

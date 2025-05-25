@@ -43,7 +43,7 @@ def query():
     
     try:
         diagnostic_report = retrieval.ask_gemini(problem.lower())
-        
+        print(diagnostic_report)
         return jsonify(diagnostic_report), 200
     
     except Exception as e:

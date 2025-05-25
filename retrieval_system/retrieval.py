@@ -5,7 +5,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 import google.generativeai as genai
-import scraper
+import retrieval_system.scraper as scraper
 
 load_dotenv()
 gemini_key = os.getenv("NEXT_PUBLIC_GEMINI_API_KEY")
@@ -138,6 +138,7 @@ def ask_gemini(query_text):
     return response.text
 
 if __name__ == "__main__":
-    user_query = "Smoke is coming from under the hood of my car"
-    answer = ask_gemini(user_query)
-    print("\nGemini Response:\n", answer)
+    # user_query = "Smoke is coming from under the hood of my car"
+    # answer = ask_gemini(user_query)
+    # print("\nGemini Response:\n", answer)
+    build_index()
