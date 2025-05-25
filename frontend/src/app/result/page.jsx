@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './results.module.css';
 import { useSearchParams } from 'next/navigation';
@@ -10,10 +11,21 @@ export default function ResultsPage() {
   const urgency = 'Low';
   const problems = ['Loose timing chain', 'Oil pressure issue', 'Valve train wear'];
 
+  const [carInfo, setCarInfo] = useState(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('carInfo');
+    if (stored) {
+      setCarInfo(JSON.parse(stored));
+    }
+  }, []);
+
   return (
     <main className={styles.page}>
       <div className={styles.card}>
-        <h2 className={styles.heading}>Car Type: {car.year} {car.make} {car.model}</h2>
+        <h2 className={styles.heading}>
+          Car Type: {carInfo?.year} {carInfo?.make} {carInfo?.model}
+        </h2>
 
         <Image
           src="/medicar-healed.png"
