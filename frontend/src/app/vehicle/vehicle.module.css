@@ -2,55 +2,70 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 4rem;
+  padding: 3rem 1rem;
   min-height: 100vh;
-  background-color: white;
-
+  /* background: white; */
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #ffffff 70%,
+    #c5e0ff 100%
+  );
 }
 
-/* .card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;  
-  justify-content: center;
-  text-align: center;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  background-color: white;
-  max-width: 500px;
-  width: 100%;
-} */
-
-
 .heading {
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 2rem;
-  background-color: #f6fcff;
+  background-color: #f0faff;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   text-align: center;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;
+  flex-wrap: wrap;
+  max-width: 960px;
+  width: 100%;
+}
+
+.formBox {
+  background-color: #f0faff;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 320px;
+  min-height: 400px; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .searchColumn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  position: relative;
+  gap: 1.5rem;
   width: 100%;
   max-width: 320px;
 }
 
-.selectWrapper {
-  position: relative;
-  z-index: 1;
+.imageBox {
+  width: 240px;
+  height: auto;
+  margin-top: 7rem;
 }
 
+.selectWrapper,
 .selectWrapperFocused {
   position: relative;
-  z-index: 100;
+  width: 100%;
 }
 
 .container {
@@ -60,17 +75,21 @@
 .label {
   font-weight: 600;
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.1rem;
+  margin-top: 0;
 }
 
 .input {
+  margin: 0;
   width: 100%;
   padding: 0.5rem 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f6fafd;
   font-size: 1rem;
+  max-width: 100%; 
 }
+
 
 .dropdown {
   position: absolute;
@@ -98,24 +117,12 @@
   background-color: #e0f1fb;
 }
 
-.button {
-  margin-top: 2rem;
-  background-color: #cfe9f8;
-  padding: 0.75rem 2rem;
-  border-radius: 999px;
-  border: none;
-  color: #777;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
 .orSeparator {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin: 2rem 0;
+  margin: 0.5rem;
   width: 100%;
   max-width: 420px;
 }
@@ -133,10 +140,9 @@
   white-space: nowrap;
 }
 
-
 .vinWrapper {
   width: 100%;
-  max-width: 420px; 
+  max-width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,3 +156,67 @@
   text-align: center;
 }
 
+.button {
+  margin-top: 1rem;
+  background-color: #cfe9f8;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  border: none;
+  color: #777;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:disabled {
+  background-color: #e6f3f9;
+  cursor: not-allowed;
+  color: #bbb;
+}
+
+.button:hover:enabled {
+  background-color: #b3daf0;
+}
+
+.toggleGroup {
+  display: flex;
+  justify-content: space-between;
+  background: #dceffc;
+  border-radius: 999px;
+  padding: 4px;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.toggleButton {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.toggleButton:hover {
+  background: #d0eaff;
+}
+
+.toggleButton.active {
+  background: #bde4fc;
+  color: #000;
+}
+
+
+.vinModeWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  gap: 0.5rem;
+  min-height: 250px; /* Ensures vertical spacing */
+}

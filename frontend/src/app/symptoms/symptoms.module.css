@@ -46,6 +46,12 @@
   background-color: #eef7ff;
 }
 
+.selected {
+  background-color: #cfe9f8 !important;
+  border-color: #66bde4;
+  color: #333;
+}
+
 .customProblemSection {
   margin-top: 3rem;
   display: flex;

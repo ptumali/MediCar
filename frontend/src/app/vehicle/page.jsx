@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import styles from './vehicle.module.css';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const MAKES = [
   'Acura', 'Alfa Romeo', 'Audi', 'BMW', 'Chevrolet', 'Chrysler', 'Dodge',
@@ -44,6 +45,7 @@ const YEARS = ['2025', '2024', '2023', '2022', '2021', '2020',
   '2009', '2008', '2007', '2006', '2005', '2004'];
 
 export default function VehiclePage() {
+  const [mode, setMode] = useState('model'); // 'model' or 'vin'
   const [make, setMake] = useState('');
   const [model, setModel] = useState('');
   const [year, setYear] = useState('');
@@ -54,17 +56,14 @@ export default function VehiclePage() {
     localStorage.removeItem('carInfo');
   }, []);
 
+  const isValidVin = (vin) => /^[A-HJ-NPR-Z0-9]{17}$/i.test(vin);
+  const isValidModelEntry = make && model && year;
+  const isFormValid = mode === 'vin' ? isValidVin(vin) : isValidModelEntry;
+
   const handleSubmit = () => {
-    console.log('continue button success!');
-
-    const data = isValidVin(vin)
-      ? { vin }
-      : { make, model, year };
-
+    const data = mode === 'vin' ? { vin } : { make, model, year };
     localStorage.setItem('carInfo', JSON.stringify(data));
   };
-
-  const isValidVin = (vin) => /^[A-HJ-NPR-Z0-9]{17}$/i.test(vin);
 
   function SearchSelect({ label, options, value, onSelect }) {
     const [input, setInput] = useState(value || '');
@@ -83,12 +82,11 @@ export default function VehiclePage() {
         opt.toLowerCase().includes(val.toLowerCase())
       ));
       setShowDropdown(true);
-      // ❌ Do NOT call onSelect here
     };
 
     const handleSelect = (val) => {
-      setInput(val);        // Show in input
-      onSelect(val);        // Update parent
+      setInput(val);
+      onSelect(val);
       setShowDropdown(false);
     };
 
@@ -119,67 +117,93 @@ export default function VehiclePage() {
     );
   }
 
-
   return (
     <main className={styles.page}>
-      <h1 className={styles.heading}>Help us specify your vehicle:</h1>
-      <div className={styles.searchColumn}>
-        <SearchSelect
-          label="Make"
-          options={MAKES}
-          value={make}
-          onSelect={(val) => {
-            setMake(val);
-            setModel('');
-            setYear('');
-          }}
-        />
+      <h1 className={styles.heading}>What vehicle are we checking today?</h1>
 
-        <SearchSelect
-          label="Model"
-          options={make ? MODELS_BY_MAKE[make] || [] : []}
-          value={model}
-          onSelect={(val) => {
-            setModel(val);
-            setYear('');
-          }}
-        />
+      <div className={styles.mainContent}>
+        <div className={styles.formBox}>
+          <div className={styles.toggleGroup}>
+            <button
+              className={`${styles.toggleButton} ${mode === 'model' ? styles.active : ''}`}
+              onClick={() => setMode('model')}
+            >
+              Model
+            </button>
+            <button
+              className={`${styles.toggleButton} ${mode === 'vin' ? styles.active : ''}`}
+              onClick={() => setMode('vin')}
+            >
+              VIN
+            </button>
+          </div>
 
-        <SearchSelect
-          label="Year"
-          options={model ? YEARS : []}
-          value={year}
-          onSelect={setYear}
+          {mode === 'model' && (
+            <>
+              <SearchSelect
+                label="Make"
+                options={MAKES}
+                value={make}
+                onSelect={(val) => {
+                  setMake(val);
+                  setModel('');
+                  setYear('');
+                }}
+              />
+              <SearchSelect
+                label="Model"
+                options={make ? MODELS_BY_MAKE[make] || [] : []}
+                value={model}
+                onSelect={(val) => {
+                  setModel(val);
+                  setYear('');
+                }}
+              />
+              <SearchSelect
+                label="Year"
+                options={model ? YEARS : []}
+                value={year}
+                onSelect={setYear}
+              />
+            </>
+          )}
+
+          {mode === 'vin' && (
+            <div className={styles.vinModeWrapper}>
+              <label className={styles.label}>VIN</label>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Enter VIN"
+                value={vin}
+                onChange={(e) => setVin(e.target.value)}
+              />
+              {vin && !isValidVin(vin) && (
+                <p className={styles.vinError}>VIN must be 17 valid characters.</p>
+              )}
+            </div>
+          )}
+
+
+          <Link href="/symptoms">
+            <button
+              onClick={handleSubmit}
+              className={styles.button}
+              disabled={!isFormValid}
+            >
+              Continue
+            </button>
+          </Link>
+        </div>
+
+        <Image
+          src="/medicar-ask.png"
+          alt="Medi-Car mascot"
+          width={240}
+          height={240}
+          className={styles.imageBox}
         />
       </div>
-
-      <div className={styles.orSeparator}>
-        <hr />
-        <span>OR</span>
-        <hr />
-      </div>
-
-      <div className={styles.vinWrapper}>
-        <label className={styles.label}>VIN</label>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder="Enter VIN"
-          value={vin}
-          onChange={(e) => setVin(e.target.value)}
-        />
-        {vin && !isValidVin(vin) && (
-          <p className={styles.vinError}>VIN must be 17 valid characters.</p>
-        )}
-      </div>
-
-      {(isValidVin(vin) || (make && model && year)) && (
-        <Link href="/symptoms">
-          <button onClick={handleSubmit} className={styles.button}>
-            Continue
-          </button>
-        </Link>
-      )}
     </main>
   );
 }
