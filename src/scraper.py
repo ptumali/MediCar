@@ -5,11 +5,6 @@ from io import BytesIO
 import os
 from urllib.parse import urlparse
 import re
-# import nltk
-# from nltk.tokenize import word_tokenize
-# from nltk.corpus import stopwords
-
-main_url = ['https://repairpal.com/sitemap_symptoms.xml.gz']
 
 def crawl(url):
 
@@ -45,44 +40,29 @@ def scrape_one_file(url, filename):
 
     with open(filename, 'w', encoding = 'utf-8') as f:
         for p in elements:
-            # print(p)
             f.write(str(p.get_text()) + "\n")
 
-
+def create_files(): 
+    main_url = ['https://repairpal.com/sitemap_symptoms.xml.gz'] 
+    current_directory = os.getcwd()
     
-current_directory = os.getcwd()
+    dirs = []
 
-for big_url in main_url:
-    print(big_url[8:])
-    urls = crawl(big_url)
-    dir_name = os.path.join(current_directory, str(big_url[8:-24]))
+    for big_url in main_url:
+        print(big_url[8:])
+        urls = crawl(big_url)
+        dir_name = os.path.join(current_directory, str(big_url[8:-24]))
 
-    if not os.path.exists(dir_name):
-        os.makedirs(dir_name)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
+        
+        dirs.append(dir_name)
+        print(dir_name)
 
-    for u in urls: 
-        # print(u.replace("https://repairpal.com/", ""))
-        path = u.replace("https://repairpal.com/", "")
-        path = re.sub(r'[^A-Za-z0-9_\-\.]', '_', path)
-        filename = os.path.join(dir_name, path + ".txt" )
-        print(filename)
-        scrape_one_file(u, filename)
-
+        for u in urls: 
+            path = u.replace("https://repairpal.com/", "")
+            path = re.sub(r'[^A-Za-z0-9_\-\.]', '_', path)
+            filename = os.path.join(dir_name, path + ".txt" )
+            scrape_one_file(u, filename)
     
-    
-    
-# print(urls[1])
-# scrape_one_file(urls[1])
-
-
-
-# def scrape_and_get_info(url):
-#     response = requests.get(url)
-#     response.raise_for_status()
-
-#     html_content = response.content
-
-#     soup = BeautifulSoup(html_content, 'html.parser')
-
-# def get_link(url):
-
+    return dirs
