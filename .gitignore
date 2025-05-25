@@ -42,7 +42,7 @@
 **/__pycache__/
 
 # data files
-src/**/*.txt
+retrieval_system/**/*.txt
 **/repairpal.com/
-src/**/*.pkl
-src/**/*.index
+retrieval_system/**/*.pkl
+retrieval_system/**/*.index
