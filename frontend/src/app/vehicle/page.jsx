@@ -39,7 +39,9 @@ const MODELS_BY_MAKE = {
   Volvo: ['XC40', 'XC60', 'XC90', 'S60']
 };
 
-const YEARS = ['2025', '2024', '2023', '2022', '2021'];
+const YEARS = ['2025', '2024', '2023', '2022', '2021', '2020', 
+  '2019', '2018', '2017','2016','2015','2014','2013', '2012', '2011', '2010',
+  '2009', '2008', '2007', '2006', '2005', '2004'];
 
 export default function VehiclePage() {
   const [make, setMake] = useState('');
@@ -48,21 +50,21 @@ export default function VehiclePage() {
   const [vin, setVin] = useState('');
   const router = useRouter();
 
+  useEffect(() => {
+    localStorage.removeItem('carInfo');
+  }, []);
 
   const handleSubmit = () => {
     console.log('continue button success!');
 
-    if (isValidVin(vin)) {
-      console.log({ vin });
-    } else {
-      console.log({ make, model, year });
-    }
-    // NEXT STEPS FOR BACKEND DSNI GUYS 
+    const data = isValidVin(vin)
+      ? { vin }
+      : { make, model, year };
+
+    localStorage.setItem('carInfo', JSON.stringify(data));
   };
 
-
   const isValidVin = (vin) => /^[A-HJ-NPR-Z0-9]{17}$/i.test(vin);
-  
 
   function SearchSelect({ label, options, value, onSelect }) {
     const [input, setInput] = useState(value || '');
@@ -81,10 +83,12 @@ export default function VehiclePage() {
         opt.toLowerCase().includes(val.toLowerCase())
       ));
       setShowDropdown(true);
+      // ❌ Do NOT call onSelect here
     };
 
     const handleSelect = (val) => {
-      onSelect(val);
+      setInput(val);        // Show in input
+      onSelect(val);        // Update parent
       setShowDropdown(false);
     };
 
@@ -98,7 +102,7 @@ export default function VehiclePage() {
             value={input}
             onChange={handleChange}
             onFocus={() => setShowDropdown(true)}
-            onBlur={() => setTimeout(() => setShowDropdown(false), 100)}
+            onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
             placeholder={`Search ${label.toLowerCase()}...`}
           />
           {showDropdown && (
@@ -115,10 +119,10 @@ export default function VehiclePage() {
     );
   }
 
+
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>Help us specify your vehicle:</h1>
-      {/* <div className={styles.card}> */}
       <div className={styles.searchColumn}>
         <SearchSelect
           label="Make"
@@ -169,7 +173,6 @@ export default function VehiclePage() {
         )}
       </div>
 
-
       {(isValidVin(vin) || (make && model && year)) && (
         <Link href="/symptoms">
           <button onClick={handleSubmit} className={styles.button}>
@@ -177,7 +180,6 @@ export default function VehiclePage() {
           </button>
         </Link>
       )}
-    {/* </div> */}
     </main>
   );
 }
