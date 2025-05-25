@@ -53,33 +53,40 @@ export default function SymptomsPage() {
         </a>
       </p>
 
-      <h2 className={styles.question}>Which best describes your problem?</h2>
+      <h2 className={styles.question}>Does any of the following describe your problem?</h2>
 
-      <div className={styles.buttonGroup}>
-        {problems.map((item, i) => (
-          <button
-            key={i}
-            onClick={() => handleSelect(item)}
-            className={`${styles.problemButton} ${selectedProblem === item ? styles.selected : ''}`}
-          >
-            {item}
-          </button>
-        ))}
+      <div className={styles.mainContent}>
+        <img src="/medicar-think.png" alt="Thinking car" className={styles.imageBox} />
+        <div>
+          <div className={styles.buttonGroup}>
+            {problems.map((item, i) => (
+              <button
+                key={i}
+                onClick={() => handleSelect(item)}
+                className={`${styles.problemButton} ${selectedProblem === item ? styles.selected : ''}`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       <div className={styles.customProblemSection}>
-        <p className={styles.customPrompt}>Problem not listed?</p>
-        <p className={styles.customSubPrompt}>We’d love to hear more!</p>
-        <input
-          type="text"
-          className={styles.input}
-          placeholder="Describe your problem"
-          value={customProblem}
-          onChange={(e) => {
-            setCustomProblem(e.target.value);
-            setSelectedProblem(null);
-          }}
-        />
+        <p className={styles.customPrompt}>Problem not listed? We can still help!</p>
+        <div className={styles.inputWrapper}>
+          <input
+            type="text"
+            className={styles.input}
+            placeholder="Describe your problem"
+            value={customProblem}
+            onChange={(e) => {
+              setCustomProblem(e.target.value);
+              setSelectedProblem(null);
+            }}
+          />
+          {/* <span className={styles.searchIcon}>🔍</span> */}
+        </div>
         <button className={styles.submitButton} onClick={handleCustomSubmit}>
           Submit
         </button>

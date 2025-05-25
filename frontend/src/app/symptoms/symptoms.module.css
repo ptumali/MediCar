@@ -4,12 +4,21 @@
   align-items: center;
   padding: 2rem;
   text-align: center;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #ffffff 70%,
+    #c5e0ff 100%
+  );
 }
 
 .heading {
   font-size: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
+  background-color: #f0faff;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
 }
 
 .editLink {
@@ -25,10 +34,26 @@
   font-weight: 500;
 }
 
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.imageBox {
+  width: 220px;
+  margin-top: 4.5rem;
+
+}
+
 .buttonGroup {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: stretch;
   margin-top: 1.5rem;
 }
 
@@ -40,6 +65,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  min-width: 250px;
 }
 
 .problemButton:hover {
@@ -64,16 +90,29 @@
   margin-bottom: 0.25rem;
 }
 
-.customSubPrompt {
-  font-weight: 500;
+
+.inputWrapper {
+  position: relative;
+  width: 300px;
 }
 
 .input {
-  margin-top: 1rem;
-  width: 300px;
-  padding: 0.5rem;
-  border-radius: 8px;
+  width: 100%;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: 999px;
   border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #f6fafd;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1.2rem;
+  color: #888;
 }
 
 .submitButton {
