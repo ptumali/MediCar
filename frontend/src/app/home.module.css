@@ -1,44 +1,10 @@
-/* .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  gap: 4rem;
-  padding: 2rem;
-}
-
-.logoWrapper {
-  flex-shrink: 0;
-}
-
-.textWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; 
-  gap: 1.5rem;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-}
-
-.button {
-  background-color: #cfe9f8;
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  border-radius: 999px;
-  border: none;
-} */
-
 .container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #ffffff;
-  font-family: 'YourBrandFont', sans-serif;
+  font-family: 'Lilita One', sans-serif;
   background: radial-gradient(
     circle,
     #ffffff 0%,
@@ -71,6 +37,16 @@
   justify-content: center;
   text-align: center;
 
+}
+
+h3.tagline {
+  color: #b3d4f0;
+  margin-top: 1rem;
+  font-family:'Lilita One';
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
 }
 
 .car {

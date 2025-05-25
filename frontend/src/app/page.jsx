@@ -41,20 +41,24 @@ export default function Home() {
         />
         <div className={styles.brand}>
           <Image
-          src="/brand.png"
-          alt= "Brand logo"
-          width={160}
-          height={160}
-          className={styles.branding}
-        />
-        <p className={styles.tagline}>
-          <strong>Welcome,</strong><br />
-          How can I assist you today?
-        </p>
-        <Link href="/vehicle">
-          <button className={styles.button}>Continue</button>
-        </Link>
-      </div>
+            src="/brand.png"
+            alt="Brand logo"
+            width={160}
+            height={160}
+            className={styles.branding}
+          />
+          <h3 className={styles.tagline}>
+            "Pop the hood? Nah. Just pop open MediCar."
+          </h3>
+
+          <p className={styles.tagline}>
+            <strong>Welcome,</strong><br />
+            How can I assist you today?
+          </p>
+          <Link href="/vehicle">
+            <button className={styles.button}>Continue</button>
+          </Link>
+        </div>
       </div>
     </main>
   );
