@@ -39,7 +39,14 @@ export default function Home() {
           height={160}
           className={styles.logo}
         />
-        <h1 className={styles.brand}>Medi<span className={styles.car}>Car</span></h1>
+        <div className={styles.brand}>
+          <Image
+          src="/brand.png"
+          alt= "Brand logo"
+          width={160}
+          height={160}
+          className={styles.branding}
+        />
         <p className={styles.tagline}>
           <strong>Welcome,</strong><br />
           How can I assist you today?
@@ -47,6 +54,7 @@ export default function Home() {
         <Link href="/vehicle">
           <button className={styles.button}>Continue</button>
         </Link>
+      </div>
       </div>
     </main>
   );

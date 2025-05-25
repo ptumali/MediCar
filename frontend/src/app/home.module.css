@@ -65,6 +65,12 @@
   font-weight: 700;
   color: #b3d4f0;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
 }
 
 .car {
@@ -77,6 +83,7 @@
 .tagline {
   font-size: 1.25rem;
   font-weight: 500;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   color: #111;
   line-height: 1.6;
@@ -96,28 +103,4 @@
 
 .button:hover {
   background-color: #c5e0ff;
-}
-
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
