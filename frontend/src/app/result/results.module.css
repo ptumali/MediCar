@@ -1,0 +1,106 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  font-family: 'YourBrandFont', sans-serif;
+  background: radial-gradient(
+    circle,
+    #ffffff 0%,
+    #ffffff 40%,
+    #c5e0ff 100%
+  );
+}
+
+/* .card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem 3rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+  text-align: center;
+} */
+
+.heading {
+  background-color: #eaf7ff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.symptomSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.searchInput {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px 0 0 8px;
+  width: 70%;
+  text-align: center;
+}
+
+.searchIcon {
+  padding: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  font-size: 1.2rem;
+}
+
+.label {
+  font-weight: 600;
+  border-radius: 8px;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.contact {
+  font-family: monospace;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.urgency {
+  font-weight: 500;
+  color: green;
+}
+
+.problemList {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.6;
+  border-radius: 8px;
+  border-radius: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.instructions {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+  border-radius: 8px;
+  border-radius: 12px;
+  width: 100%;
+  text-align: center;
+}
